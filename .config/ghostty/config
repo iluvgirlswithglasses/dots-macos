@@ -1,0 +1,40 @@
+command = /opt/homebrew/bin/fish
+working-directory = /Users/mika/
+
+font-family = SpaceMono Nerd Font
+font-size = 14
+
+background-opacity = 0.88
+background-opacity-cells = true
+window-decoration = true
+macos-titlebar-style = hidden
+window-padding-x = 10
+window-padding-y = 10
+
+# teto -- crimson/dark base, accent #e63946
+background = #0a0606
+foreground = #f5ebe0
+cursor-color = #e63946
+cursor-text = #0a0606
+selection-background = #2a1414
+selection-foreground = #f5ebe0
+
+# normal (0-7)
+palette = 0=#0a0606
+palette = 1=#e63946
+palette = 2=#8ac35a
+palette = 3=#f4c95d
+palette = 4=#4ec6e0
+palette = 5=#d97aaa
+palette = 6=#7ddfff
+palette = 7=#f5ebe0
+
+# bright (8-15)
+palette = 8=#5a3030
+palette = 9=#e85a6e
+palette = 10=#a6d47a
+palette = 11=#f6d882
+palette = 12=#7ddfff
+palette = 13=#e0a0c8
+palette = 14=#9de8ff
+palette = 15=#fff0e8

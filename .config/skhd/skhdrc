@@ -1,0 +1,42 @@
+# App launchers
+alt - return : open -na ghostty
+alt - w      : launchctl setenv MOZ_DISABLE_SAFE_MODE_KEY 1 && open -na waterfox
+alt - e      : open -a Finder
+alt - r      : /Applications/Albert.app/Contents/MacOS/Albert toggle
+
+# Close focused window
+alt - q      : osascript -e 'tell application "System Events" to keystroke "w" using command down'
+
+# Screenshot (interactive region)
+alt + shift - s : screencapture -i ~/Desktop/screenshot.png
+
+# Media controls
+alt + shift - p : osascript -e 'tell application "System Events" to key code 16 using {command down}'
+alt + shift - n : osascript -e 'tell application "System Events" to key code 124 using {command down}'
+# alt+shift+b is taken by OmniWM (balanceSizes); media-prev is alt+shift+y
+alt + shift - y : osascript -e 'tell application "System Events" to key code 123 using {command down}'
+
+# Focus — vim keys (OmniWM arrow keys handle the arrow variants natively)
+alt - h : /opt/homebrew/bin/omniwmctl command focus left
+alt - j : /opt/homebrew/bin/omniwmctl command focus down
+alt - k : /opt/homebrew/bin/omniwmctl command focus up
+alt - l : /opt/homebrew/bin/omniwmctl command focus right
+
+# Move window — vim keys
+alt + shift - h : /opt/homebrew/bin/omniwmctl command move left
+alt + shift - j : /opt/homebrew/bin/omniwmctl command move down
+alt + shift - k : /opt/homebrew/bin/omniwmctl command move up
+alt + shift - l : /opt/homebrew/bin/omniwmctl command move right
+
+# Fullscreen (OmniWM also binds Option+Return for this)
+alt - f : /opt/homebrew/bin/omniwmctl command toggle-fullscreen
+
+# Toggle floating / tiling
+alt + shift - space : /opt/homebrew/bin/omniwmctl command toggle-focused-window-floating
+
+# Workspace 10 (OmniWM's hotkey schema only goes to .8 / 9 slots)
+alt - 0         : /opt/homebrew/bin/omniwmctl command switch-workspace anywhere 10
+alt + shift - 0 : /opt/homebrew/bin/omniwmctl command move-to-workspace 10
+
+# Reload skhd
+alt + shift - c : skhd --reload
