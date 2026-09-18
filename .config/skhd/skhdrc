@@ -5,7 +5,7 @@ alt - e      : open -a Finder
 alt - r      : /Applications/Albert.app/Contents/MacOS/Albert toggle
 
 # Close focused window
-alt - q      : osascript -e 'tell application "System Events" to keystroke "w" using command down'
+alt - q      : /opt/homebrew/bin/omniwmctl command close-focused-window
 
 # Screenshot
 alt + shift - s : screencapture -i ~/Desktop/screenshot.png
