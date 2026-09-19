@@ -4,8 +4,8 @@ sbar.add("item", "apple.logo", {
     position = "left",
     background = {
         image = {
-            string = os.getenv("HOME") .. "/.config/sketchybar/assets/blossom.png",
-            scale = 0.04,
+            string = os.getenv("HOME") .. "/.config/sketchybar/assets/sakura.png",
+            scale = 0.08,
         },
     },
     label = { drawing = false },

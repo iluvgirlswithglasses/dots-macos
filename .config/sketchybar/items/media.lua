@@ -31,32 +31,18 @@ local function transport(name, position, glyph, size, color, pad_l, pad_r, cmd)
 end
 
 local playpause =
-    transport("center.media.playpause", "center", icons.media.play, 13, accent(0.45), 4, 4, "nowplaying-cli togglePlayPause")
-
-local artwork = sbar.add("item", "center.media.artwork", {
-    position = "center",
-    background = {
-        image = { string = "", scale = 0.23, corner_radius = 4 },
-        color = colors.transparent,
-        border_width = 0,
-        height = 22,
-        corner_radius = 4,
-    },
-    icon = { drawing = false },
-    label = { drawing = false },
-    drawing = false,
-    padding_left = 4,
-    padding_right = 2,
-})
+    transport("center.media.playpause", "center", icons.media.play, 13, accent(0.45), 12, 4, "nowplaying-cli togglePlayPause")
 
 local media = sbar.add("item", "center.media", {
     position = "center",
     icon = { drawing = false },
     scroll_texts = false,
     label = {
-        string = "Waiting for media manager...",
+        string = "waiting for media...",
         font = text_font(12),
         color = colors.white,
+        width = 182,
+        align = "left",
         padding_left = 4,
         padding_right = 4,
     },
@@ -73,22 +59,6 @@ local media = sbar.add("item", "center.media", {
     },
     update_freq = 1,
     updates = true,
-})
-
-local popup_artwork = sbar.add("item", "popup.center.media.art", {
-    position = "popup.center.media",
-    background = {
-        image = { string = "", scale = 0.5, corner_radius = 6 },
-        color = colors.transparent,
-        border_width = 0,
-        height = 48,
-        corner_radius = 6,
-    },
-    icon = { drawing = false },
-    label = { drawing = false },
-    drawing = false,
-    padding_left = 10,
-    padding_right = 6,
 })
 
 local popup_title = sbar.add("item", "popup.center.media.title", {
@@ -110,52 +80,11 @@ local popup_playpause =
 local popup_next =
     transport("popup.center.media.next", "popup.center.media", icons.media.forward, 14, accent(0.85), 8, 12, "nowplaying-cli next")
 
--- write artwork to disk then load on demand
-os.execute("rm -f /tmp/sketchybar_art_*.jpg 2>/dev/null")
-local ART_SLOTS = { "/tmp/sketchybar_art_a.jpg", "/tmp/sketchybar_art_b.jpg" }
-local art_slot = 0
-
-local SHOW_ARTWORK = true
-local MAX_LABEL_CHARS = SHOW_ARTWORK and 20 or 24
+local MAX_LABEL_CHARS = 32
 
 local current_track_key = nil
 local last_label_state = nil
 local last_play_state = nil
-
-local function set_artwork(path)
-    if SHOW_ARTWORK then
-        artwork:set({
-            drawing = true,
-            background = { image = { drawing = true, string = path } },
-            icon = { drawing = false },
-        })
-    end
-    popup_artwork:set({ drawing = true, background = { image = { drawing = true, string = path } } })
-end
-
-local function hide_artwork()
-    artwork:set({ drawing = false })
-    popup_artwork:set({ drawing = false })
-end
-
-local function show_idle_artwork()
-    if not SHOW_ARTWORK then
-        artwork:set({ drawing = false })
-        return
-    end
-    artwork:set({
-        drawing = true,
-        background = { image = { drawing = false } },
-        icon = {
-            drawing = true,
-            string = ":music:",
-            font = { family = "sketchybar-app-font", style = "Regular", size = 14.0 },
-            color = accent(0.45),
-            padding_left = 4,
-            padding_right = 4,
-        },
-    })
-end
 
 local function show_track(title, artist)
     local key = (title or "") .. "|" .. (artist or "")
@@ -166,33 +95,10 @@ local function show_track(title, artist)
 
     popup_title:set({ label = { string = title or "" } })
     popup_artist:set({ label = { string = artist or "" } })
-
-    art_slot = art_slot % #ART_SLOTS + 1
-    local path = ART_SLOTS[art_slot]
-    local cmd = string.format(
-        "nowplaying-cli get artworkData 2>/dev/null | base64 -D > %q 2>/dev/null; "
-            .. "if [ -s %q ]; then sips -Z 96 %q >/dev/null 2>&1; echo ok; else rm -f %q; fi",
-        path,
-        path,
-        path,
-        path
-    )
-    sbar.exec(cmd, function(out)
-        if current_track_key ~= key then
-            return
-        end
-        if out and out:match("ok") then
-            set_artwork(path)
-        else
-            hide_artwork()
-        end
-    end)
 end
 
 local function reset_media()
     current_track_key = nil
-    show_idle_artwork()
-    popup_artwork:set({ drawing = false })
     popup_title:set({ label = { string = "" } })
     popup_artist:set({ label = { string = "" } })
 end
@@ -209,7 +115,7 @@ local function set_play_icon(playing)
 end
 
 local function set_label(text_str, faded, animate)
-    text_str = text.pad_to(text_str, MAX_LABEL_CHARS)
+    -- width is pinned via label.width now; no manual padding needed.
     local key = (faded and "f|" or "n|") .. text_str
     if key == last_label_state then
         return
@@ -228,7 +134,7 @@ end
 local function set_idle()
     reset_media()
     set_play_icon(false)
-    set_label("It's pretty silent in here...", 0.5, true)
+    set_label("listen to the silence...", 0.5, true)
 end
 
 local function set_track(title, artist, playing)
@@ -281,7 +187,6 @@ end
 
 media:subscribe({ "routine", "system_woke", "media_change" }, poll)
 media:subscribe("mouse.clicked", toggle_popup)
-artwork:subscribe("mouse.clicked", toggle_popup)
 playpause:subscribe("mouse.clicked", optimistic_toggle)
 popup_playpause:subscribe("mouse.clicked", optimistic_toggle)
 popup_prev:subscribe("mouse.clicked", function()

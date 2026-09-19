@@ -8,7 +8,7 @@ require("items.spaces")
 require("items.media")
 sbar.add("item", "center.notch", {
     position = "center",
-    width = 200,
+    width = 160,
     icon = { drawing = false },
     label = { drawing = false },
     background = { color = colors.transparent },
