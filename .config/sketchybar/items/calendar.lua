@@ -44,5 +44,5 @@ time:subscribe({ "forced", "routine", "system_woke" }, function(env)
 end)
 
 date:subscribe({ "forced", "routine", "system_woke" }, function(env)
-    date:set({ icon = { string = os.date("%b %d %a") } })
+    date:set({ icon = { string = os.date("%a %d/%m") } })
 end)
