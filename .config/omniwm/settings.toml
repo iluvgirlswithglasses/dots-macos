@@ -265,7 +265,7 @@ bundleId = "com.apple.Music"
 id = "780D1049-4507-4387-B631-8286B667EE6A"
 layout = "float"
 minHeight = 600.0
-minWidth = 780.0
+minWidth = 980.0
 
 [[hotkeys]]
 binding = "Unassigned"

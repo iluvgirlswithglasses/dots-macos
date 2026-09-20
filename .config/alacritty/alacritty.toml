@@ -1,0 +1,55 @@
+[general]
+working_directory = "/Users/mika/"
+
+[terminal.shell]
+program = "/opt/homebrew/bin/fish"
+args = ["--login"]
+
+[font]
+size = 14.0
+
+[font.normal]
+family = "SpaceMono Nerd Font"
+
+[window]
+opacity = 0.88
+decorations = "Buttonless"
+
+[window.padding]
+x = 10
+y = 10
+
+# teto -- crimson/dark base, accent #e63946
+[colors.primary]
+background = "#0a0606"
+foreground = "#f5ebe0"
+
+[colors.cursor]
+cursor = "#e63946"
+text = "#0a0606"
+
+[colors.selection]
+background = "#2a1414"
+text = "#f5ebe0"
+
+# normal (0-7)
+[colors.normal]
+black = "#0a0606"
+red = "#e63946"
+green = "#8ac35a"
+yellow = "#f4c95d"
+blue = "#4ec6e0"
+magenta = "#d97aaa"
+cyan = "#7ddfff"
+white = "#f5ebe0"
+
+# bright (8-15)
+[colors.bright]
+black = "#5a3030"
+red = "#e85a6e"
+green = "#a6d47a"
+yellow = "#f6d882"
+blue = "#7ddfff"
+magenta = "#e0a0c8"
+cyan = "#9de8ff"
+white = "#fff0e8"
