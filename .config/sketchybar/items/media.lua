@@ -31,7 +31,7 @@ local function transport(name, position, glyph, size, color, pad_l, pad_r, cmd)
 end
 
 local playpause =
-    transport("center.media.playpause", "center", icons.media.play, 13, accent(0.45), 12, 4, "nowplaying-cli togglePlayPause")
+    transport("center.media.playpause", "center", icons.media.play, 13, accent(0.45), 12, 0, "nowplaying-cli togglePlayPause")
 
 local media = sbar.add("item", "center.media", {
     position = "center",
