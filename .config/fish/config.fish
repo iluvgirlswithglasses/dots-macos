@@ -5,7 +5,7 @@
 
 set -x PATH /opt/homebrew/opt/coreutils/libexec/gnubin $PATH /usr/sbin ~/.local/bin
 
-abbr --add cloneme git clone ssh+git://git@github.com/iluvgirlswithglasses/
+abbr --add cloneme git clone git@ilgwg:iluvgirlswithglasses/
 abbr --add setntp timedatectl set-ntp
 abbr --add settime sudo timedatectl set-time
 
