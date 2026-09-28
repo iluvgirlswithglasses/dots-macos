@@ -1,12 +1,12 @@
 [general]
-working_directory = "/Users/mika/"
+working_directory = "~"
 
 [terminal.shell]
 program = "/opt/homebrew/bin/fish"
 args = ["--login"]
 
 [font]
-size = 14.0
+size = 15.0
 
 [font.normal]
 family = "SpaceMono Nerd Font"

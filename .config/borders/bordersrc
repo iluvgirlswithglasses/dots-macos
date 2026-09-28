@@ -3,7 +3,7 @@
 # jankyborders for teto theme
 options=(
     style=round
-    width=5.0
+    width=4.0
     hidpi=on
     active_color=0xffe63946
     inactive_color=0x00000000

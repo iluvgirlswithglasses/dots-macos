@@ -8,7 +8,7 @@ alt - r      : /Applications/Albert.app/Contents/MacOS/Albert toggle
 alt - q      : /opt/homebrew/bin/omniwmctl command close-focused-window
 
 # Screenshot
-alt + shift - s : screencapture -i ~/Desktop/screenshot.png
+alt + shift - s : screencapture -ic
 
 # Navigation
 alt - h : /opt/homebrew/bin/omniwmctl command focus left

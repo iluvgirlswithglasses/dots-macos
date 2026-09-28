@@ -21,6 +21,7 @@ red = 1.0
 
 [clipboard]
 historyEnabled = false
+ignoredTypes = []
 maxItemBytes = 8388608
 maxItems = 200
 maxTotalBytes = 67108864
@@ -50,7 +51,7 @@ size = 10.0
 bottom = 10.0
 left = 10.0
 right = 10.0
-top = 47.0
+top = 38.0
 
 [general]
 animationsEnabled = false
@@ -102,6 +103,9 @@ singleWindowFit = "fill"
 visibleContainerCount = 2
 
 [overview]
+invertScrollDirection = false
+matchFocusBorder = true
+mouseScrollSpeed = 1.0
 zoom = 1.0
 
 [overview.backdrop]
